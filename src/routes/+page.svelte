@@ -10,6 +10,8 @@
     photo: string;
   };
 
+  let activeFilter = 'all';
+
   let players: Player[] = [];
   let selectedPlayer: Player | null = null;
 
@@ -91,6 +93,42 @@
     </div>
   </div>
 </div>
+    <div class="filters">
+    <button
+        class:active-filter={activeFilter === 'all'}
+        on:click={() => activeFilter = 'all'}
+    >
+        ALL
+    </button>
+
+    <button
+        class:active-filter={activeFilter === 'captain'}
+        on:click={() => activeFilter = 'captain'}
+    >
+        👑 CAPTAINS
+    </button>
+
+    <button
+        class:active-filter={activeFilter === 'bowler'}
+        on:click={() => activeFilter = 'bowler'}
+    >
+        🎯 BOWLERS
+    </button>
+
+    <button
+        class:active-filter={activeFilter === 'batsman'}
+        on:click={() => activeFilter = 'batsman'}
+    >
+        🏏 BATSMEN
+    </button>
+
+    <button
+        class:active-filter={activeFilter === 'allrounder'}
+        on:click={() => activeFilter = 'allrounder'}
+    >
+        ⚡ ALL ROUNDERS
+    </button>
+    </div>
   <div class="table-container">
     <div class="table-header">
       <div>#</div>
@@ -101,7 +139,25 @@
       <div>ROLE</div>
     </div>
 
-    {#each players as player, index}
+    {#each players.filter((player) => {
+        if (activeFilter === 'all') return true;
+
+        if (activeFilter === 'captain')
+            return player.role.toLowerCase() === 'captain';
+
+        if (activeFilter === 'bowler')
+            return player.playerStyle.toLowerCase().includes('bowl');
+
+        if (activeFilter === 'batsman')
+            return player.playerStyle.toLowerCase().includes('bat');
+
+        if (activeFilter === 'allrounder')
+            return (
+            player.playerStyle.toLowerCase().includes('all')
+            );
+
+        return true;
+        }) as player, index}
       <button
         class:captain-row={player.role.toLowerCase() === 'captain'}
         class="player-row"
@@ -898,6 +954,89 @@
   .label {
     font-size: 0.68rem;
     letter-spacing: 1px;
+  }
+}
+/* =========================
+   FILTERS
+========================= */
+
+.filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 22px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  position: relative;
+  z-index: 2;
+}
+
+.filters::-webkit-scrollbar {
+  display: none;
+}
+
+.filters button {
+  border: none;
+  background: rgba(255, 255, 255, 0.04);
+  color: #9bcfff;
+  padding: 12px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+}
+
+.filters button:hover {
+  background: rgba(0, 162, 255, 0.08);
+}
+
+.active-filter {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 162, 255, 0.22),
+    rgba(0, 162, 255, 0.08)
+  ) !important;
+
+  color: white !important;
+
+  border: 1px solid rgba(0, 162, 255, 0.4) !important;
+
+  box-shadow:
+    0 0 20px rgba(0, 162, 255, 0.2),
+    inset 0 0 20px rgba(255, 255, 255, 0.03);
+}
+
+/* captain active */
+
+.filters button:nth-child(2).active-filter {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 191, 0, 0.22),
+    rgba(255, 191, 0, 0.08)
+  ) !important;
+
+  border-color: rgba(255, 191, 0, 0.4) !important;
+
+  box-shadow:
+    0 0 20px rgba(255, 191, 0, 0.2),
+    inset 0 0 20px rgba(255, 255, 255, 0.03);
+}
+
+/* MOBILE */
+
+@media (max-width: 900px) {
+  .filters {
+    gap: 10px;
+    margin-bottom: 16px;
+    padding-inline: 2px;
+  }
+
+  .filters button {
+    padding: 10px 14px;
+    font-size: 0.78rem;
   }
 }
 </style>
