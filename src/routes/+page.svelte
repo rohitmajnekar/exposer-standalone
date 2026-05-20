@@ -680,7 +680,7 @@
 
   .player-row {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     gap: 10px;
     padding: 14px;
     transform: none !important;
@@ -733,49 +733,89 @@
   ========================= */
 
   /* DOB */
-  .player-row > div:nth-child(3) {
-    display: none !important;
-  }
-
-  /* SIZE */
-  .player-row > div:nth-child(5) {
-    display: none !important;
-  }
-
   /* =========================
-     STYLE CARD
-  ========================= */
+   MOBILE PLAYER LAYOUT
+========================= */
 
-  .player-row > div:nth-child(4) {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 14px;
-    border-radius: 14px;
-    background: rgba(255, 255, 255, 0.03);
-    font-size: 0.88rem;
-  }
+/* hide dob */
+.player-row > div:nth-child(3) {
+  display: none !important;
+}
 
-  .player-row > div:nth-child(4)::before {
-    content: 'STYLE - ';
-    color: #72bbff;
-    font-size: 0.68rem;
-    letter-spacing: 1px;
-  }
+/* hide size */
+.player-row > div:nth-child(5) {
+  display: none !important;
+}
 
-  /* =========================
-     BADGES
-  ========================= */
+/* hide role badge */
+.player-row > div:nth-child(6) {
+  display: none !important;
+}
 
-  .captain-badge,
-  .player-badge {
-    width: 100%;
-    justify-content: center;
-    min-height: 44px;
-    font-size: 0.84rem;
-    padding: 10px 14px;
-    border-radius: 14px;
-  }
+/* top section */
+
+.player-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* image */
+
+.player-cell img {
+  width: 58px;
+  height: 58px;
+  min-width: 58px;
+}
+
+/* info */
+
+.player-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.name {
+  font-size: 1rem;
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+
+.sub {
+  font-size: 0.68rem;
+  letter-spacing: 1.5px;
+}
+
+/* style pill */
+
+.player-row > div:nth-child(4) {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  min-width: 90px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* remove STYLE text */
+
+.player-row > div:nth-child(4)::before {
+  content: none;
+}
+
+/* captain glow */
+
+.captain-row .player-row > div:nth-child(4),
+.captain-row div:nth-child(4) {
+  border-color: rgba(255, 191, 0, 0.25);
+  box-shadow: 0 0 20px rgba(255, 191, 0, 0.08);
+}
 
   /* =========================
      OVERLAY
