@@ -125,7 +125,7 @@
 
         <div>{player.dateOfBirth}</div>
 
-        <div>{player.playerStyle}</div>
+        <div>&nbsp; {player.playerStyle}</div>
 
         <div>{player.tshirtSize}</div>
 
@@ -216,6 +216,7 @@
     min-height: 100vh;
     padding: 40px;
     position: relative;
+    overflow: hidden;
     background:
       radial-gradient(circle at top left, #101d48 0%, transparent 30%),
       radial-gradient(circle at bottom right, #3a005c 0%, transparent 30%),
@@ -230,6 +231,7 @@
     filter: blur(120px);
     opacity: 0.15;
     pointer-events: none;
+    z-index: 0;
   }
 
   .glow-1 {
@@ -244,21 +246,47 @@
     right: -100px;
   }
 
+  /* HEADER */
+
   .header {
     display: flex;
     justify-content: center;
     margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .league-brand {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    padding: 18px 32px;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(0, 162, 255, 0.12);
+    backdrop-filter: blur(14px);
+    box-shadow:
+      0 0 40px rgba(0, 162, 255, 0.12),
+      inset 0 0 30px rgba(255, 255, 255, 0.02);
+  }
+
+  .league-logo {
+    width: 110px;
+    height: 110px;
+    object-fit: contain;
+    filter:
+      drop-shadow(0 0 12px rgba(0, 162, 255, 0.5))
+      drop-shadow(0 0 30px rgba(255, 0, 200, 0.25));
   }
 
   .title-wrap {
-    text-align: center;
+    text-align: left;
   }
 
   .mini-line {
     width: 100px;
     height: 4px;
-    margin: auto;
-    border-radius: 10px;
+    border-radius: 999px;
     background: linear-gradient(90deg, #00d0ff, #ff00b8);
     margin-bottom: 18px;
     box-shadow: 0 0 20px #00d0ff;
@@ -268,21 +296,40 @@
     margin: 0;
     font-size: 4rem;
     letter-spacing: 6px;
+    line-height: 1;
     background: linear-gradient(90deg, #ffffff, #00a2ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
-  .title-wrap span {
-    color: #7cb7ff;
+  .league-full-name {
+    font-size: 1rem;
     letter-spacing: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 10px;
+    background: linear-gradient(90deg, #ffffff, #79cfff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
+  .title-wrap span {
+    display: inline-block;
+    margin-top: 12px;
+    color: #7cb7ff;
+    letter-spacing: 3px;
+    font-size: 0.85rem;
+  }
+
+  /* TABLE */
+
   .table-container {
+    position: relative;
+    z-index: 1;
     border: 1px solid rgba(0, 170, 255, 0.35);
-    background: rgba(5, 12, 35, 0.7);
+    background: rgba(5, 12, 35, 0.72);
     backdrop-filter: blur(18px);
-    border-radius: 28px;
+    border-radius: 30px;
     overflow: hidden;
     box-shadow:
       0 0 40px rgba(0, 128, 255, 0.2),
@@ -303,6 +350,7 @@
     font-weight: 700;
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     background: rgba(0, 0, 0, 0.25);
+    letter-spacing: 1px;
   }
 
   .player-row {
@@ -354,6 +402,7 @@
     border-radius: 50%;
     border: 2px solid #00a2ff;
     box-shadow: 0 0 25px rgba(0, 162, 255, 0.45);
+    background: #071224;
   }
 
   .captain-row img {
@@ -406,8 +455,8 @@
   .overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(12px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -420,8 +469,8 @@
     width: min(100%, 850px);
     background: linear-gradient(
       180deg,
-      rgba(10, 16, 42, 0.95),
-      rgba(4, 8, 22, 0.98)
+      rgba(10, 16, 42, 0.96),
+      rgba(4, 8, 22, 0.99)
     );
     border-radius: 30px;
     border: 1px solid rgba(0, 162, 255, 0.25);
@@ -432,18 +481,28 @@
       0 0 120px rgba(255, 0, 200, 0.12);
   }
 
+  .modal::-webkit-scrollbar {
+    width: 0;
+  }
+
+  .modal {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
   .close-btn {
     position: absolute;
     top: 18px;
     right: 18px;
-    width: 44px;
-    height: 44px;
+    width: 46px;
+    height: 46px;
     border-radius: 50%;
     border: none;
     background: rgba(255, 255, 255, 0.08);
     color: white;
     cursor: pointer;
     font-size: 1rem;
+    backdrop-filter: blur(10px);
   }
 
   .modal-top {
@@ -459,6 +518,7 @@
     overflow: hidden;
     border: 2px solid #00a2ff;
     box-shadow: 0 0 50px rgba(0, 162, 255, 0.45);
+    background: #071224;
   }
 
   .selected-captain {
@@ -481,6 +541,7 @@
     margin: 0;
     font-size: 3rem;
     margin-bottom: 12px;
+    line-height: 1.1;
   }
 
   .overlay-role {
@@ -531,108 +592,272 @@
       opacity: 0;
       transform: scale(0.96);
     }
+
     to {
       opacity: 1;
       transform: scale(1);
     }
   }
 
-  @media (max-width: 900px) {
-    .page {
-      padding: 16px;
+  @keyframes mobileModal {
+    from {
+      transform: translateY(100%);
     }
 
-    h1 {
-      font-size: 2.5rem;
-    }
-
-    .table-header {
-      display: none;
-    }
-
-    .player-row {
-      grid-template-columns: 1fr;
-      gap: 14px;
-      padding: 20px;
-    }
-
-    .detail-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .photo-frame {
-      width: 100%;
-      max-width: 320px;
-      height: 400px;
-    }
-
-    .details h2 {
-      font-size: 2rem;
+    to {
+      transform: translateY(0%);
     }
   }
+
+  /* MOBILE */
+
+@media (max-width: 900px) {
+  .page {
+    padding: 10px;
+  }
+
+  /* =========================
+     HEADER
+  ========================= */
+
+  h1 {
+    font-size: 2.2rem;
+    letter-spacing: 2px;
+  }
+
+  .header {
+    margin-bottom: 18px;
+  }
+
   .league-brand {
-  display: flex;
-  align-items: center;
-  gap: 28px;
-  padding: 10px 30px;
-  border-radius: 28px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(0, 162, 255, 0.12);
-  backdrop-filter: blur(12px);
-  box-shadow:
-    0 0 40px rgba(0, 162, 255, 0.12),
-    inset 0 0 30px rgba(255, 255, 255, 0.02);
-}
-
-.league-logo {
-  width: 110px;
-  height: 110px;
-  object-fit: contain;
-  filter:
-    drop-shadow(0 0 12px rgba(0, 162, 255, 0.5))
-    drop-shadow(0 0 30px rgba(255, 0, 200, 0.25));
-}
-
-.league-full-name {
-  font-size: 1.1rem;
-  letter-spacing: 4px;
-  font-weight: 700;
-  text-transform: uppercase;
-  margin-top: 8px;
-  background: linear-gradient(90deg, #ffffff, #79cfff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.title-wrap span {
-  display: inline-block;
-  margin-top: 12px;
-  color: #7cb7ff;
-  letter-spacing: 3px;
-  font-size: 0.85rem;
-}
-
-@media (max-width: 768px) {
-  .league-brand {
-    flex-direction: column;
-    text-align: center;
-    gap: 18px;
-    padding: 20px;
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+    padding: 14px;
+    border-radius: 20px;
   }
 
   .league-logo {
-    width: 85px;
-    height: 85px;
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+  }
+
+  .title-wrap {
+    text-align: left;
+    flex: 1;
+  }
+
+  .mini-line {
+    width: 60px;
+    margin-bottom: 10px;
+    margin-inline: 0;
   }
 
   .league-full-name {
-    font-size: 0.9rem;
-    letter-spacing: 2px;
+    font-size: 0.72rem;
+    letter-spacing: 1px;
+    line-height: 1.3;
+    margin-top: 6px;
   }
 
   .title-wrap span {
-    font-size: 0.7rem;
-    letter-spacing: 2px;
+    display: none;
+  }
+
+  /* =========================
+     TABLE
+  ========================= */
+
+  .table-container {
+    border-radius: 18px;
+    overflow: hidden;
+  }
+
+  .table-header {
+    display: none;
+  }
+
+  .player-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px;
+    transform: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  }
+
+  .player-row:hover {
+    transform: none;
+    background: rgba(0, 162, 255, 0.04);
+  }
+
+  .index {
+    display: none;
+  }
+
+  /* =========================
+     PLAYER TOP SECTION
+  ========================= */
+
+  .player-cell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .player-cell img {
+    width: 58px;
+    height: 58px;
+    min-width: 58px;
+    border-width: 2px;
+  }
+
+  .player-info {
+    gap: 2px;
+    flex: 1;
+  }
+
+  .name {
+    font-size: 1rem;
+    line-height: 1.15;
+  }
+
+  .sub {
+    font-size: 0.68rem;
+    letter-spacing: 1.5px;
+  }
+
+  /* =========================
+     HIDE UNNECESSARY DATA
+  ========================= */
+
+  /* DOB */
+  .player-row > div:nth-child(3) {
+    display: none !important;
+  }
+
+  /* SIZE */
+  .player-row > div:nth-child(5) {
+    display: none !important;
+  }
+
+  /* =========================
+     STYLE CARD
+  ========================= */
+
+  .player-row > div:nth-child(4) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.03);
+    font-size: 0.88rem;
+  }
+
+  .player-row > div:nth-child(4)::before {
+    content: 'STYLE - ';
+    color: #72bbff;
+    font-size: 0.68rem;
+    letter-spacing: 1px;
+  }
+
+  /* =========================
+     BADGES
+  ========================= */
+
+  .captain-badge,
+  .player-badge {
+    width: 100%;
+    justify-content: center;
+    min-height: 44px;
+    font-size: 0.84rem;
+    padding: 10px 14px;
+    border-radius: 14px;
+  }
+
+  /* =========================
+     OVERLAY
+  ========================= */
+
+  .overlay {
+    padding: 0;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .modal {
+    width: 100%;
+    height: 100dvh;
+    max-height: 100dvh;
+    border-radius: 24px 24px 0 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    animation: mobileModal 0.22s ease;
+    padding-bottom: 30px;
+  }
+
+  .modal::-webkit-scrollbar {
+    width: 0;
+  }
+
+  .close-btn {
+    position: sticky;
+    top: 14px;
+    margin-left: auto;
+    margin-right: 14px;
+    width: 42px;
+    height: 42px;
+    z-index: 50;
+    backdrop-filter: blur(10px);
+  }
+
+  .modal-top {
+    padding: 0 16px;
+  }
+
+  .photo-frame {
+    width: 100%;
+    max-width: 290px;
+    height: 360px;
+    border-radius: 20px;
+  }
+
+  .details {
+    padding: 22px 16px 30px;
+  }
+
+  .details h2 {
+    font-size: 1.9rem;
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+
+  .overlay-role {
+    margin-bottom: 22px;
+    font-size: 0.85rem;
+    padding: 10px 16px;
+  }
+
+  /* =========================
+     DETAIL GRID
+  ========================= */
+
+  .detail-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .detail-card {
+    padding: 16px;
+    text-align: left;
+    border-radius: 16px;
+  }
+
+  .label {
+    font-size: 0.68rem;
+    letter-spacing: 1px;
   }
 }
 </style>
