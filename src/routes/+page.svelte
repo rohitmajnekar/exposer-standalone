@@ -93,6 +93,22 @@
     </div>
   </div>
 </div>
+<div class="live-banner">
+  <div class="live-dot"></div>
+
+  <div class="live-content">
+    <span class="live-label">LIVE AUCTION</span>
+
+    <div class="marquee">
+      <div class="marquee-track">
+        🏏 Live Auction on 24th May 2026 • Stay Tuned •
+        Narli Agripada Premier League • APL 2026 •
+        🏏 Live Auction on 24th May 2026 • Stay Tuned •
+        Narli Agripada Premier League • APL 2026 •
+      </div>
+    </div>
+  </div>
+</div>
     <div class="filters">
     <button
         class:active-filter={activeFilter === 'all'}
@@ -217,7 +233,8 @@
           <img
             src={selectedPlayer.photo}
             alt={selectedPlayer.playerName}
-          />
+            on:error={(e) => handleImageError(e, selectedPlayer.role)}
+            />
         </div>
       </div>
 
@@ -738,7 +755,8 @@
     display: flex;
     /* flex-direction: column; */
     gap: 10px;
-    padding: 14px;
+    margin-bottom: 3px;
+    padding: 4px;
     transform: none !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.04);
   }
@@ -763,9 +781,9 @@
   }
 
   .player-cell img {
-    width: 58px;
-    height: 58px;
-    min-width: 58px;
+    width: 35px;
+    height: 35px;
+    min-width: 35px;
     border-width: 2px;
   }
 
@@ -775,7 +793,7 @@
   }
 
   .name {
-    font-size: 1rem;
+    font-size: 0.9rem;
     line-height: 1.15;
   }
 
@@ -819,9 +837,9 @@
 /* image */
 
 .player-cell img {
-  width: 58px;
-  height: 58px;
-  min-width: 58px;
+  width: 35px;
+  height: 35px;
+  min-width: 35px;
 }
 
 /* info */
@@ -832,7 +850,7 @@
 }
 
 .name {
-  font-size: 1rem;
+  font-size: 0.9rem;
   line-height: 1.1;
   margin-bottom: 4px;
 }
@@ -849,12 +867,12 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 14px;
+  padding: 6px 10px;
   min-width: 90px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.04);
-  font-size: 0.82rem;
+  font-size: 0.75rem;
   font-weight: 600;
   white-space: nowrap;
 }
@@ -1029,14 +1047,189 @@
 
 @media (max-width: 900px) {
   .filters {
-    gap: 10px;
+    gap: 6px;
     margin-bottom: 16px;
     padding-inline: 2px;
   }
 
   .filters button {
-    padding: 10px 14px;
-    font-size: 0.78rem;
+    padding: 6px 10px;
+    font-size: 0.68rem;
+  }
+}
+/* =========================
+   LIVE AUCTION BANNER
+========================= */
+
+.live-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  margin-bottom: 22px;
+  padding: 16px 20px;
+
+  border-radius: 22px;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0, 162, 255, 0.12),
+      rgba(255, 0, 184, 0.08)
+    );
+
+  border: 1px solid rgba(0, 162, 255, 0.18);
+
+  backdrop-filter: blur(16px);
+
+  box-shadow:
+    0 0 40px rgba(0, 162, 255, 0.08),
+    inset 0 0 30px rgba(255, 255, 255, 0.02);
+}
+
+/* animated glow */
+
+.live-banner::before {
+  content: '';
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.08),
+      transparent
+    );
+
+  transform: translateX(-100%);
+
+  animation: liveShine 4s linear infinite;
+}
+
+/* live dot */
+
+.live-dot {
+  width: 14px;
+  height: 14px;
+  min-width: 14px;
+
+  border-radius: 50%;
+
+  background: #ff3b3b;
+
+  box-shadow:
+    0 0 0 rgba(255, 59, 59, 0.7);
+
+  animation: pulseLive 1.5s infinite;
+}
+
+/* content */
+
+.live-content {
+  min-width: 0;
+  flex: 1;
+}
+
+.live-label {
+  display: inline-block;
+
+  margin-bottom: 6px;
+
+  color: #ff7d7d;
+
+  font-size: 0.72rem;
+  font-weight: 800;
+
+  letter-spacing: 2px;
+}
+
+/* marquee */
+
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.marquee-track {
+  display: inline-block;
+
+  color: white;
+
+  font-weight: 700;
+  letter-spacing: 1px;
+
+  padding-left: 100%;
+
+  animation: marqueeMove 28s linear infinite;
+}
+
+/* animations */
+
+@keyframes marqueeMove {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes pulseLive {
+  0% {
+    transform: scale(1);
+    box-shadow:
+      0 0 0 0 rgba(255, 59, 59, 0.7);
+  }
+
+  70% {
+    transform: scale(1.08);
+    box-shadow:
+      0 0 0 12px rgba(255, 59, 59, 0);
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow:
+      0 0 0 0 rgba(255, 59, 59, 0);
+  }
+}
+
+@keyframes liveShine {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 900px) {
+  .live-banner {
+    padding: 14px 16px;
+    gap: 12px;
+    margin-bottom: 16px;
+    border-radius: 18px;
+  }
+
+  .live-label {
+    font-size: 0.66rem;
+    margin-bottom: 4px;
+  }
+
+  .marquee-track {
+    font-size: 0.85rem;
+  }
+
+  .live-dot {
+    width: 12px;
+    height: 12px;
+    min-width: 12px;
   }
 }
 </style>
