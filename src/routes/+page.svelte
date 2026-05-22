@@ -15,6 +15,13 @@
   let players: Player[] = [];
   let selectedPlayer: Player | null = null;
 
+  function openPlayer(player: Player) {
+    selectedPlayer = player;
+  }
+
+  function closePlayer() {
+    selectedPlayer = null;
+  }
   // CSV Loader
   function handleImageError(event: Event, role: string) {
     const target = event.target as HTMLImageElement;
@@ -1086,7 +1093,7 @@
 
 /* captain glow */
 
-.captain-row .player-row > div:nth-child(4),
+.captain-row > div:nth-child(4),
 .captain-row div:nth-child(4) {
   border-color: rgba(255, 191, 0, 0.25);
   box-shadow: 0 0 20px rgba(255, 191, 0, 0.08);
