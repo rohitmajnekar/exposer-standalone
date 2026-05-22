@@ -72,7 +72,7 @@
         owner: 'Ritanshu Thakur',
         ownerImage: '/photos/owners/Ritanshu Thakur.jpg',
         captain: 'Alankar Gaikar',
-        team: 'Royals',
+        team: 'Agri Royals',
         color: '#8b5cf6',
         logo: '/photos/logos/royals.png'
       },
@@ -80,7 +80,7 @@
         owner: 'Mukesh Mahadik',
         ownerImage: '/photos/owners/Mukesh Mali.jpg',
         captain: 'Bhavesh Mahadik',
-        team: 'Thunders',
+        team: 'Agri Thunders',
         color: '#38bdf8',
         logo: '/photos/logos/thunders.png'
       },
@@ -88,7 +88,7 @@
         owner: 'Pranay Patil',
         ownerImage: '/photos/owners/Pranay Patil.jpg',
         captain: 'Mayur Mali',
-        team: 'Kings',
+        team: 'Agri Kings',
         color: '#facc15',
         logo: '/photos/logos/kings.png'
       },
@@ -96,7 +96,7 @@
         owner: 'Mahendra Wavekar',
         ownerImage: '/photos/owners/Mahendra Wavekar.jpg',
         captain: 'Milind Pake',
-        team: 'Riders',
+        team: 'Agri Riders',
         color: '#14b8a6',
         logo: '/photos/logos/riders.png'
       },
@@ -104,7 +104,7 @@
         owner: 'Prajyot Dhumal',
         ownerImage: '/photos/owners/Prajyot Dhumal.jpg',
         captain: 'Nikesh Sanas',
-        team: 'Stars',
+        team: 'Agri Stars',
         color: '#fb923c',
         logo: '/photos/logos/stars.png'
       },
@@ -112,7 +112,7 @@
         owner: 'Vicky Mhatre',
         ownerImage: '/photos/owners/Vicky Mhatre.jpg',
         captain: 'Shailesh Mhatre',
-        team: 'Warriors',
+        team: 'Agri Warriors',
         color: '#3b82f6',
         logo: '/photos/logos/warriors.png'
       },
@@ -120,7 +120,7 @@
         owner: 'Manish Thakur',
         ownerImage: '/photos/owners/Manish Thakur.jpg',
         captain: 'Siddhesh Kudekar',
-        team: 'Titans',
+        team: 'Agri Titans',
         color: '#111111',
         logo: '/photos/logos/titans.png'
       },
@@ -128,7 +128,7 @@
         owner: 'Manish Avkirkar',
         ownerImage: '/photos/owners/Manish Avkirkar.jpg',
         captain: 'Aniket Mhatre',
-        team: 'Spartans',
+        team: 'Agri Spartans',
         color: '#ef4444',
         logo: '/photos/logos/spartans.png'
       }
@@ -1923,7 +1923,7 @@
 
     .franchise-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 12px;
     }
 
