@@ -189,7 +189,7 @@
   <div class="franchise-section">
     <div class="section-title">
       <span></span>
-      FRANCHISES
+      OWNERS
     </div>
 
     <div class="franchise-grid">
